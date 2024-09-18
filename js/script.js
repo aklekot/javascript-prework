@@ -1,7 +1,6 @@
-var argMoveId, argPlayerMove, argComputerMove, computerMove, playerMove, randomNumber, playerInput;
-var playerResult = 0, computerResult = 0;
-/* Funkcja zapisująca odpowiedni tekst w zależność o d wartości 1-3 */
+let playerResult = 0, computerResult = 0;
 
+/* Funkcja zapisująca odpowiedni tekst w zależność o d wartości 1-3 */
 function getMoveName(argMoveId) {
     console.log('wywołano funkcję getMoveName z argumentem: ' + argMoveId);
     if (argMoveId == 1) {
@@ -10,13 +9,12 @@ function getMoveName(argMoveId) {
         return 'papier';
     } else if (argMoveId == 3) {
         return 'nożyce';
-    } 
+    }
 }
 
 /* Funkcja wyświetlające info kto wygrał  */
 function displayResult(argPlayerMove, argComputerMove) {
     printMessage('Zagrałem ' + argComputerMove + ', a Ty ' + argPlayerMove);
-    // console.log('wywołano funkcję displayResults z argumentami: ' + argPlayerMove + ', ' + argComputerMove);
     if (argPlayerMove == 'papier' && argComputerMove == 'kamień') {
         printMessage('Wygrywasz!');
         playerResult += 1;
@@ -30,14 +28,13 @@ function displayResult(argPlayerMove, argComputerMove) {
         printMessage('Remis!');
     } else {
         printMessage('Przegrywasz :(');
-        computerResult +=1;
+        computerResult += 1;
     }
 }
 
-var argButtonName, buttonRock, buttonPaper, buttonScissors;
-
 /* Uruchamiamy buttony.*/
 function buttonClicked(argButtonName) {
+    let computerMove, playerMove, randomNumber, playerInput;
     clearMessages();
     playerMove = argButtonName;
     console.log('ruch gracza to: ' + playerMove);
@@ -45,13 +42,13 @@ function buttonClicked(argButtonName) {
     computerMove = getMoveName(randomNumber);
     console.log('ruch komputera to: ' + computerMove);
     displayResult(playerMove, computerMove);
-    console.log('punkty gracza: ' +playerResult);
-    console.log('punkty kompa: ' +computerResult);
+    console.log('punkty gracza: ' + playerResult);
+    console.log('punkty kompa: ' + computerResult);
     document.getElementById("result").innerHTML = playerResult + " - " + computerResult;
 }
-buttonRock = document.getElementById('button-rock');
+const buttonRock = document.getElementById('button-rock');
 buttonRock.addEventListener('click', function () { buttonClicked('kamień'); });
-buttonPaper = document.getElementById('button-paper');
+const buttonPaper = document.getElementById('button-paper');
 buttonPaper.addEventListener('click', function () { buttonClicked('papier'); });
-buttonScissors = document.getElementById('button-scissors');
+const buttonScissors = document.getElementById('button-scissors');
 buttonScissors.addEventListener('click', function () { buttonClicked('nożyce'); });
